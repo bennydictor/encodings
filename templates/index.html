@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="Website for changing encodings" />
+    <meta name="author" content="Benny" />
+    <title>Encodings</title>
+  </head>
+  <body>
+    <header>
+      <h1>Encodings</h1>
+      <aside>by Benny</aside>
+    </header>
+
+    <main>
+      <form method="POST">
+        <p>
+          {% if failed %}<strong>{{ failed }}</strong>{% endif %}
+        </p>
+        <p>
+          <label for="enc">Encoding</label>
+          <select name="enc">
+          {% for e in encs %}
+            <option {% if selected_enc == e %}selected="selected"{% endif %}>{{ e }}</option>
+          {% endfor %}
+          </select>
+        </p>
+        <p>
+          <textarea name="text" cols="120" rows="10">{{ text }}</textarea>
+        </p>
+        <p>
+          <input type="submit" name="submit_decode" value="Decode" />
+          or
+          <input type="submit" name="submit_encode" value="Encode" />
+        </p>
+      </form>
+    </main>
+  </body>
+</html>
+<!-- vim:set ft=htmldjango: -->
