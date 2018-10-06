@@ -7,36 +7,47 @@
     <meta name="description" content="Website for changing encodings" />
     <meta name="author" content="Benny" />
     <title>Encodings</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Works without js
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    -->
   </head>
   <body>
-    <header>
-      <h1>Encodings</h1>
-      <aside>by Benny</aside>
-    </header>
-
-    <main>
-      <form method="POST">
-        <p>
-          {% if failed %}<strong>{{ failed }}</strong>{% endif %}
-        </p>
-        <p>
-          <label for="enc">Encoding</label>
-          <select name="enc">
-          {% for e in encs %}
-            <option {% if selected_enc == e %}selected="selected"{% endif %}>{{ e }}</option>
-          {% endfor %}
-          </select>
-        </p>
-        <p>
-          <textarea name="text" cols="120" rows="10">{{ text }}</textarea>
-        </p>
-        <p>
-          <input type="submit" name="submit_decode" value="Decode" />
-          or
-          <input type="submit" name="submit_encode" value="Encode" />
-        </p>
-      </form>
-    </main>
+    <div class="container">
+      <header>
+        <div class="jumbotron mt-4">
+          <h1 class="display-4">Encodings</h1>
+          <aside class="lead">by Benny</aside>
+        </div>
+      </header>
+      <main>
+        <form method="POST">
+          {% if failed %}
+          <div class="alert alert-danger">
+            {{ failed }}
+          </div>
+          {% endif %}
+          <div class="form-group">
+            <select class="form-control custom-select form-control-lg" name="enc">
+            {% for e in encs %}
+              <option {% if selected_enc == e %}selected="selected"{% endif %}>{{ e }}</option>
+            {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="text" cols="120" rows="10">{{ text }}</textarea>
+          </div>
+          <div class="form-group">
+            <input class="btn btn-primary" type="submit" name="submit_encode" value="Encode" />
+            or
+            <input class="btn btn-primary" type="submit" name="submit_decode" value="Decode" />
+          </div>
+        </form>
+      </main>
+    </div>
   </body>
 </html>
 <!-- vim:set ft=htmldjango: -->
