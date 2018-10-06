@@ -4,7 +4,7 @@ import pkgutil
 import urllib.parse
 
 import werkzeug
-from flask import Flask, request, abort, render_template
+from flask import Flask, request, abort, render_template, redirect, url_for
 
 encs = {
     'base64': (
@@ -54,6 +54,10 @@ def index():
             text=text,
             selected_enc=enc,
             failed=failed)
+
+@app.route('/robots.txt')
+def robots():
+    return redirect(url_for('static', filename='robots.txt'))
 
 application = app
 if __name__ == '__main__':
